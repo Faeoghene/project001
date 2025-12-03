@@ -1,2 +1,2 @@
-# emformance
-just a couple tech projects that might blow your mind
+# project001
+an optical character recognition system
