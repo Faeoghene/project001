@@ -3,9 +3,18 @@ from pdf2image import convert_from_bytes
 import pytesseract
 from PIL import Image
 import io
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all origins, or set to your frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.post("/")
 async def extract_text(file: UploadFile = File(...)):
     content = await file.read()
