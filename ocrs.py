@@ -13,9 +13,9 @@ async def extract_text(file: UploadFile = File(...)):
 
     if filename.endswith(".pdf"):
         try:
-            pages = convert_from_bytes(content)
-        except Exception:
-            raise HTTPException(status_code=400, detail="Invalid PDF file")
+            pages = convert_from_bytes(content,poppler_path=r'C:\Program Files\poppler-25.11.0\Library\bin')
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=e)
 
         text = ""
         for page in pages:
@@ -30,7 +30,8 @@ async def extract_text(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="Invalid image file")
 
         text = pytesseract.image_to_string(image)
-        return {"filename": file.filename, "text": text.strip('\n')}
+        text = text.replace("\n","")
+        return {"filename": file.filename, "text": text.strip()}
 
     else:
         raise HTTPException(status_code=400, detail="Unsupported file type. Upload PDF or image.")
