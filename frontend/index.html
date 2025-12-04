@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Extractor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>OCR Text Extractor</h1>
+        <p id="instructions">Upload files here: (PDF, PNG, JPEG)</p>
+
+        <!-- Input Area -->
+        <div id="uploadArea" class="upload-area">
+            <p id="uploadLabel">Click to choose a file</p>
+            <input type="file" id="fileInput" accept=".pdf, image/*">
+        </div>
+
+        <p id="status"></p>
+
+        <!-- Output Area -->
+        <textarea id="output" placeholder="Extracted text will appear here..." readonly></textarea>
+    </div>
+</body>
+</html>
